@@ -1,20 +1,20 @@
 'use client';
 
-import { Formik, Form, Field, ErrorMessage, useField, useFormikContext  } from 'formik';
+import { Formik, Form, Field, ErrorMessage, useField, useFormikContext } from 'formik';
 import DatePicker from "react-datepicker";
 import moment from "moment";
 import * as Yup from "yup";
 
- 
 
- const FormSchema = Yup.object().shape({
-   phoneNumber: Yup.string()
-     .matches(/^[\+]?[0-9]{0,3}\W?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im, 'Not a valid phone number'),
-   numberOfPeople: Yup.number()
-   .positive()
-   .integer()
-   .required('Required'),
- });
+
+const FormSchema = Yup.object().shape({
+  phoneNumber: Yup.string()
+    .matches(/^[\+]?[0-9]{0,3}\W?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im, 'Not a valid phone number'),
+  numberOfPeople: Yup.number()
+    .positive()
+    .integer()
+    .required('Required'),
+});
 
 export const DatePickerField = ({ ...props }) => {
   const { setFieldValue } = useFormikContext();
@@ -41,7 +41,14 @@ export default function Home() {
         </h1>
         <Formik
           className="font-mono text-sm/6 text-center sm:text-left"
-          initialValues={{ date: moment(new Date()) }}
+          initialValues={{
+            date: moment(new Date()),
+            name: '',
+            address: '',
+            city: '',
+            phoneNumber: '',
+            numberOfPeople: ''
+          }}
           validationSchema={FormSchema}
           onSubmit={(values, { setSubmitting }) => {
             setTimeout(() => {
@@ -62,7 +69,7 @@ export default function Home() {
               <label htmlFor="city">City</label>
               <Field name="city" />
               <label htmlFor="phoneNumber">Phone Number</label>
-              <Field name="phoneNumber"  />
+              <Field name="phoneNumber" />
               <label htmlFor="numberOfPeople">Number of people in household: </label>
               <Field name="numberOfPeople" />
               <button type="submit" disabled={isSubmitting}>
