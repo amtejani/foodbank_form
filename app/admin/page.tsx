@@ -7,6 +7,7 @@ import * as Yup from "yup";
 import Link from 'next/link';
 
 
+
 const FormSchema = Yup.object().shape({
   phoneNumber: Yup.string()
     .matches(/^[\+]?[0-9]{0,3}\W?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im, 'Not a valid phone number'),
@@ -31,22 +32,18 @@ export const DatePickerField = ({ ...props }) => {
   );
 };
 
-export default function Home() {
+export default function Admin() {
   return (
     <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
       <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
         <h1>
-          Signup {moment(new Date()).format("MM/DD/YYYY")}
+          Admin
         </h1>
         <Formik
           className="font-mono text-sm/6 text-center sm:text-left"
           initialValues={{
-            date: moment(new Date()),
-            name: '',
-            address: '',
-            city: '',
-            phoneNumber: '',
-            numberOfPeople: ''
+            date: '',
+            period: '',
           }}
           validationSchema={FormSchema}
           onSubmit={(values, { setSubmitting }) => {
@@ -58,21 +55,12 @@ export default function Home() {
         >
           {({ isSubmitting }) => (
             <Form>
-              <label htmlFor="date">Date</label>
+              <label htmlFor="date">Start date</label>
               <DatePickerField name="date" />
-              <label htmlFor="name">Name</label>
-              <Field name="name" />
-              <label htmlFor="address">Address</label>
-              <Field name="address" />
-              <ErrorMessage name="address" component="div" />
-              <label htmlFor="city">City</label>
-              <Field name="city" />
-              <label htmlFor="phoneNumber">Phone Number</label>
-              <Field name="phoneNumber" />
-              <label htmlFor="numberOfPeople">Number of people in household: </label>
-              <Field name="numberOfPeople" />
+              <label htmlFor="period">Period</label>
+              <Field name="period" />
               <button type="submit" disabled={isSubmitting}>
-                Submit
+                Save
               </button>
             </Form>
           )}
@@ -82,8 +70,8 @@ export default function Home() {
       <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
         <Link
           className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="/admin">
-          Admin
+          href="/">
+          Home
         </Link>
       </footer>
     </div>
