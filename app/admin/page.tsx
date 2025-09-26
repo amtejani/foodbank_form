@@ -1,5 +1,6 @@
 'use client';
 
+import 'bootstrap/dist/css/bootstrap.min.css';
 import { Formik, Form, Field, ErrorMessage, useField, useFormikContext } from 'formik';
 import DatePicker from "react-datepicker";
 import moment from "moment";
