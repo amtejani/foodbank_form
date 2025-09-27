@@ -25,7 +25,7 @@ const FormSchema = Yup.object().shape({
     .required("Date is required"),
 });
 
-/* This is a React Form component (to get the styling) wrapped inside a Formik component (to get the validationschema) */
+/* This is a React Form component (to get the styling) wrapped inside a Formik component (to get the validationschema)
 /* Rn I only added ErrorMessage on phone and num people bc they have some input validations. Date field defaults to today's date so it should be fine
 /* https://react-bootstrap.netlify.app/docs/forms/validation */
 export default function EventForm() {
