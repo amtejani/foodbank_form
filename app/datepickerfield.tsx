@@ -24,7 +24,7 @@ export function DatePickerField({ name, ...props }: DatePickerFieldProps) {
             (e?.target as HTMLInputElement | null)?.value ?? ''; //captures typed input
           setFieldValue(name, value);
   }}
-  dateFormat="MM/dd/yyyy"   // 👈 accepts "09/26/2025"
+  dateFormat="MM/dd/yyyy"   // accepts "09/26/2025"
   placeholderText="MM/DD/YYYY"
   className="form-control"
 />
