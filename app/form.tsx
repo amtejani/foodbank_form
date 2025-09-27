@@ -1,4 +1,4 @@
-import { Formik, Field, ErrorMessage, useField, useFormikContext } from 'formik';
+import { Formik, ErrorMessage} from 'formik';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import moment from "moment";
@@ -35,7 +35,7 @@ export default function EventForm() {
             address: '',
             city: '',
             phoneNumber: '',
-            numberOfPeople: 1
+            numberOfPeople: ''
           }}
           validationSchema={FormSchema}
           onSubmit={(values, { setSubmitting }) => {
@@ -45,7 +45,7 @@ export default function EventForm() {
             }, 400);
           }}
         >
-          {({ handleSubmit, isSubmitting, values, handleChange }) => (
+          {({ handleSubmit, values, handleChange }) => (
             <Form onSubmit={handleSubmit}>
                 <Form.Group className="mb-3" controlId="date">
                     <Form.Label>Date</Form.Label>
@@ -54,38 +54,33 @@ export default function EventForm() {
 
                 <FormGroup className="mb-3" controlId="name">
                     <Form.Label>Name</Form.Label>
-                    <Form.Control type="text" placeholder="John Doe" />
-                    <Form.Text className="text-muted">
-                    </Form.Text>
+                    <Form.Control type="text" placeholder="John Doe" name="name" value={values.name} onChange={handleChange} />
+                    <Form.Text className="text-muted"/>
                 </FormGroup>
               
                 <FormGroup className="mb-3" controlId="address">
                     <Form.Label>Address</Form.Label>
-                    <Form.Control type="text" placeholder="123 Street" />
-                    <Form.Text className="text-muted">
-                    </Form.Text>
+                    <Form.Control type="text" placeholder="123 Street" name="address" value={values.address} onChange={handleChange} />
+                    <Form.Text className="text-muted" />
                 </FormGroup>
 
-                <FormGroup className="mb-3" controlId="City">
+                <FormGroup className="mb-3" controlId="city">
                     <Form.Label>City</Form.Label>
-                    <Form.Control type="text" placeholder="City" />
-                    <Form.Text className="text-muted">
-                    </Form.Text>
+                    <Form.Control type="text" placeholder="City" name="city" value={values.city} onChange={handleChange} />
+                    <Form.Text className="text-muted" />
                 </FormGroup>
 
                 <FormGroup className="mb-3" controlId="phone">
                     <Form.Label>Phone Number</Form.Label>
                     <Form.Control type="tel" name="phoneNumber" placeholder="1234567890" value={values.phoneNumber} onChange={handleChange} />
-                    <Form.Text className="text-muted">
-                    </Form.Text>
-                     <ErrorMessage name="phoneNumber" component="div" className="text-danger small" />
+                    <Form.Text className="text-muted" />
+                    <ErrorMessage name="phoneNumber" component="div" className="text-danger small" />
                 </FormGroup>
 
                 <FormGroup className="mb-3" controlId="num-people">
                     <Form.Label>Number of People</Form.Label>
                     <Form.Control type="number" name="numberOfPeople" placeholder="1" value={values.numberOfPeople} onChange={handleChange} />
-                    <Form.Text className="text-muted">
-                    </Form.Text>
+                    <Form.Text className="text-muted" />
                     <ErrorMessage name="numberOfPeople" component="div" className="text-danger small" />
                 </FormGroup>
 
